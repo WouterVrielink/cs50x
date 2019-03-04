@@ -594,7 +594,7 @@ Implement an Object-Oriented version of Crowther's Adventure game.
 === `check50`
 You can check your progress in Adventure by runnign the following:
 ```
-check50 minprog/checks/master/adventure/check50
+check50 adventure@minprog/checks
 ```
 
 === `style50`
