@@ -225,6 +225,9 @@ To do so, you'll first have to head over to room.py and implement the add_route 
 
 Then you can use that method to update each room with their respective connections.
 
+. Implement the add_route method for the `Room` class.
+. Add the correct routes to each respective room object.
+
 === Moving around
 
 Now that we have a couple of rooms, we can almost start playing the game.
@@ -246,6 +249,9 @@ You can test moving around by adding the following code to `if __name__ == '__ma
 ----
 
 Make sure this works before going on!
+
+. Implement `is_connected` for the `Room` class.
+. Implement `move` in `Adventure`.
 
 
 === Prompt for commands
@@ -282,6 +288,11 @@ If a player enters a room they've already seen, only give them the short descrip
 
 Hint: Starting the game counts as 'entering' the first room! Make sure to provide a description of the starting location.
 
+. Print the full description of a room each time a player enters a new room.
+. Print only the name of a room when a player enters a room they've entered before.
+. Allow a player to `move` using UPPER/lower cased commands from the terminal.
+. Properly handle invalid movements.
+
 === Additional commands
 
 As a final step for making the basic game work, we'll add a few commands that make it easier to use: `QUIT`, `HELP` and `LOOK`.
@@ -315,6 +326,7 @@ Have it behave as follows:
   You are inside a building, a well house for a large spring.
 ----
 
+. Implement the additional commands: `HELP`, `QUIT`, `LOOK`
 
 == Step 2: Finding and picking up items
 
@@ -352,6 +364,10 @@ image::item_class.png[Item, role="related thumb"]
 
 Implement the `Item` class by creating a new Python source file, and add code to load items and instantiate them at the start of a game. Don't forget to `import` your new file into `adventure.py`!
 
+. Create a new file for your `Item` class.
+. Implement the `__init__` for your `Item` class.
+. Load each item into an object in `Adventure`.
+
 === Holding items
 
 Items can be either located in the rooms inventory or the players inventory.
@@ -363,6 +379,11 @@ image::inventory_class.png[Inventory, role="related thumb"]
 
 As you can see the inventory only has methods that it displays publicly. Its attributes are kept private, and are only meant to be accessed through these methods.
 
+. Create a new file for your `Inventory` class.
+. Implement the methods indicated in the UML and any others you might need.
+. Implement the `__init__` method for your `Inventory` class. Add any attributes your methods require.
+. Don't forget that the attributes in your `Inventory` should only be accessed by your `Invetory` methods. Not by `Adventure`.
+
 === Placing items
 
 First add an inventory to each room you create, so each room can hold items.
@@ -371,6 +392,9 @@ Now, when you load the items, place them in the room they should initially be in
 Use the room id of the item to find the correct room. Then use the methods of the rooms inventory class to add the items!
 Note that when you add an `Item` to an `Inventory`, you should do so by passing the item itself to the `Inventory.add(item)` method.
 Removing an `Item` is done by passing the 'item name' to the `Inventory.remove(item_name)` method.
+
+. Add an `Inventory` as an attribute to your `Adventure` and `Room` objects.
+. Add each `Item` to it's respective `Room` by use of that `Room`'s `Inventory`.
 
 === Finding items
 
@@ -387,6 +411,9 @@ It is formatted as follows:
   etc.
 
 Don't forget to add this feature to the `LOOK` coomand!
+
+. Print each item and it's description that is in a `Room` when you enter that `Room`.
+. Update `LOOK` if necessary.
 
 === Taking and dropping items
 
@@ -445,6 +472,9 @@ It should print all items currently owned by the player, like this:
   >
 ----
 
+. Implement the `take` and `drop` methods for `Adventure`.
+. Allow users to pick up and put down items via the two-word commands: 'TAKE <item>' and 'DROP <item>'
+
 == Step 3: Conditional movement
 
 Time to step up our game. Let's get started on the Small version of adventure.
@@ -498,6 +528,10 @@ A conditional movement would look like this:
   >
 ----
 
+. Update `load_rooms` in `Adventure` to accomodate for multiples of the same direction.
+. Update `move` in `Adventure` to take into account that an item can be required for a move.
+. Update any method in `Room` to allow for the above methods to function properly.
+
 == Step 4: forced movement
 
 Sometimes a player will attempt a movement they cannot make yet, because they are missing the required item. Passing the steel grate in room 6 for example requires keys.
@@ -529,6 +563,9 @@ Remember to always print the full description when a room `FORCED` is entered. T
 
 Hint: You'll most likely want to do a check each time you move to a new room. And if there's a forced movement in the new room, take a good look around and follow the forced route.
 
+. Update either `move` or the `play` loop in `Adventure` to 'forcefully' push players to the next room.
+. Don't forget to print a description when a player enters and leaves a 'FORCED' `Room`.
+
 == Step 5: The winner takes all
 
 Now that you have implemented all the features of Adventures, Crowther game is finally playable.
@@ -555,15 +592,9 @@ Implement an Object-Oriented version of Crowther's Adventure game.
 * The game must be winnable.
 
 === `check50`
-Adventure runs on the newest version of check50. To use that version run the following code in your IDE.
+You can check your progress in Adventure by runnign the following:
 ```
-pip install git+https://github.com/Qvdpost/check50x
-```
-You can run any of these checks depending on how far along you are in Adventure.
-```
-check50x minprog/cs50x/master/adventure/check50/tiny
-check50x minprog/cs50x/master/adventure/check50/small
-check50x minprog/cs50x/master/adventure/check50/crowther
+check50 minprog/checks/master/adventure/check50
 ```
 
 === `style50`
