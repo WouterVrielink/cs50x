@@ -212,7 +212,7 @@ For each set of room data we know that the first element is the `room_id`, the s
 ==== Part 3
 
 To finalize the Room objects we'll have to update each room with its corresponding connections from the data file. Once again we iterate over each set of room_data, but this time we'll use the connections.
-Since we don't know how many connections each room has we'll have to slice till the end of each list. The start of each slice will be the fifth element of room data, that is the first element after the "-----" line.
+Since we don't know how many connections each room has we'll have to slice till the end of each list. The start of each slice will be the fifth element of room data, that is the first element after the '`-----`' line.
 
 The connections ar then cleaned up a by splitting them into two strings, one for the direction and another for the connected room_id. Finally we use the room_id from the room_data to find the correct room in the dictionary we created in step 2.
 
